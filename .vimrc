@@ -45,6 +45,10 @@ Plug 'mhinz/vim-startify'
 "-----------------=== code virtual text  ==-------------------
 Plug 'metakirby5/codi.vim'
 
+"-----------------=== fzf ==-------------------
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
 call plug#end()
 
 filetype plugin indent on
@@ -60,7 +64,7 @@ endif
 " set leader
 let mapleader = ","
 let maplocalleader = "\\"
-
+inoremap jj <ESC>
 " always show the status bar
 set laststatus=2
 
@@ -87,7 +91,8 @@ set smarttab                                " set tabs for a shifttabs logic
 set autoindent                              " indent when moving to the next line while writing code
 set cursorline                              " shows line under the cursor's line
 set showmatch                               " shows matching part of bracket pairs (), [], {}
-set clipboard=unnamed                       " use system clipboard
+set clipboard=unnamedplus                       " use system clipboard
+map <C-y> :w !xclip -sel c <CR><CR>
 " word movement
 imap <S-Left> <Esc>bi
 nmap <S-Left> b
@@ -124,7 +129,17 @@ filetype plugin indent on
 
 " lightline
 set noshowmode
-let g:lightline = { 'colorscheme': 'onedark' }
+let g:lightline = {
+        \ 'colorscheme': 'powerline',
+        \ 'active': {
+        \   'right': [ [  'TIME'],
+        \            [ 'percent' , 'lineinfo' ],
+        \            [ 'fileformat', 'fileencoding', 'filetype'] ]
+        \ },
+        \ 'component': {
+        \   'TIME':'%{strftime("%H:%M")}'
+        \ },
+        \ }
 
 " code folding
 set foldmethod=indent
@@ -362,3 +377,17 @@ let g:NERDTrimTrailingWhitespace = 1
 
 " Enable NERDCommenterToggle to check all selected lines is commented or not
 let g:NERDToggleCheckAllLines = 1
+
+" Always enable preview window on the right with 60% width
+let g:fzf_preview_window = 'right:60%'
+
+" [Buffers] Jump to the existing window if possible
+let g:fzf_buffers_jump = 1
+" [Tags] Command to generate tags file
+let g:fzf_tags_command = 'ctags -R'
+
+" [Commands] --expect expression for directly executing the command
+let g:fzf_commands_expect = 'alt-enter,ctrl-x'
+
+" https://leetschau.github.io/python-ide-based-on-vim.html
+" set statusline=\PATH:\ %r%F\ \ \ \ \LINE:\ %l/%L/%P\ TIME:\ %{strftime('%c')}
