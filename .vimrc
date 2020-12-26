@@ -49,6 +49,9 @@ Plug 'metakirby5/codi.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
+" A Vim Plugin for Lively Previewing LaTeX PDF Output
+Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
+
 call plug#end()
 
 filetype plugin indent on
@@ -391,3 +394,8 @@ let g:fzf_commands_expect = 'alt-enter,ctrl-x'
 
 " https://leetschau.github.io/python-ide-based-on-vim.html
 " set statusline=\PATH:\ %r%F\ \ \ \ \LINE:\ %l/%L/%P\ TIME:\ %{strftime('%c')}
+"
+" latex
+let g:livepreview_previewer = 'evince'
+autocmd Filetype tex setl updatetime=1
+let g:livepreview_engine = 'xelatex'
