@@ -399,3 +399,8 @@ let g:fzf_commands_expect = 'alt-enter,ctrl-x'
 let g:livepreview_previewer = 'evince'
 autocmd Filetype tex setl updatetime=1
 let g:livepreview_engine = 'xelatex'
+
+" wildmenu
+set wildmenu
+set wildmode=longest:list,full
+""""""""""""""""""
