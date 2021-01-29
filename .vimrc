@@ -49,8 +49,13 @@ Plug 'metakirby5/codi.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
-" A Vim Plugin for Lively Previewing LaTeX PDF Output
-Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
+"----------------- A Vim Plugin for Lively Previewing LaTeX PDF Output
+"Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
+"---------- syctex to go to location in latex
+Plug 'peterbjorgensen/sved'
+
+
+
 
 call plug#end()
 
@@ -78,6 +83,8 @@ set t_ut=
 
 " turn on line numbering
 set number
+set relativenumber
+
 " sane text files
 set fileformat=unix
 set encoding=utf-8
@@ -353,7 +360,7 @@ let delimitMate_expand_cr = 1
 filetype indent plugin on
 " which key
 nnoremap <silent> <leader> :WhichKey ','<CR>
-nnoremap <silent> <localleader> :<c-u>WhichKey  '\\'<CR>
+nnoremap <silent> <localleader> :<c-u>WhichKey '\\'<CR>
 " By default timeoutlen is 1000 ms
 set timeoutlen=500
 
@@ -396,11 +403,20 @@ let g:fzf_commands_expect = 'alt-enter,ctrl-x'
 " set statusline=\PATH:\ %r%F\ \ \ \ \LINE:\ %l/%L/%P\ TIME:\ %{strftime('%c')}
 "
 " latex
-let g:livepreview_previewer = 'evince'
-autocmd Filetype tex setl updatetime=1
-let g:livepreview_engine = 'xelatex'
+" let g:livepreview_previewer = 'evince'
+"let g:livepreview_previewer = 'zathura'
+"autocmd Filetype tex setl updatetime=1
+"let g:livepreview_engine = 'xelatex'
 
 " wildmenu
 set wildmenu
 set wildmode=longest:list,full
 """"""""""""""""""
+"-------------synctex for going form pdf to latex-----"
+"first run xelatex --synctex=1 example.tex
+""F4 to open location in pdf"
+" ctrl + click to go to latex location
+nmap <F4> :call SVED_Sync()<CR>
+"
+"autocmd BufWritePost *.tex silent! execute "!xelatex --synctex=1 % >/dev/null 2>&1" | redraw!
+autocmd BufWritePost *.tex execute "!xelatex --synctex=1 %"
