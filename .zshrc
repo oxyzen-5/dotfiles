@@ -98,8 +98,20 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
+alias doom="~/.emacs.d/bin/doom"
+alias doc="/mnt/doc"
 ###### pyenv
 export PATH="/home/oxyzen/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 ##############################
+
+############### Kitty commands
+autoload -Uz compinit
+compinit
+# Completion for kitty
+kitty + complete setup zsh | source /dev/stdin
+###############################
+export PATH="/usr/local/texlive/2020/bin/x86_64-linux:$PATH"
+#export MANPATH="/usr/local/texlive/2020/texmf/doc/man:$MANPATH"
+#export INFOPATH="/usr/local/texlive/2020/texmf/doc/info:$INFOPATH"
