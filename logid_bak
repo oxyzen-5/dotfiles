@@ -1,0 +1,112 @@
+// https://github.com/PixlOne/logiops/wiki/CIDs
+// https://github.com/torvalds/linux/blob/master/include/uapi/linux/input-event-codes.h
+/// https://askubuntu.com/questions/1149310/logitech-mx-master-2s-via-bluetooth-change-pointer-speed/1246278#1246278
+// https://github.com/PixlOne/logiops
+
+
+devices: (
+{
+    name: "Wireless Mouse MX Master 2S";
+    smartshift:
+    {
+        on: true;
+        threshold: 10; # 7 is ideal for work
+    };
+    hiresscroll:
+    {
+        hires: true;
+        invert: false;
+        target: true;
+        up: {
+            mode: "Axis";
+            axis: "REL_WHEEL_HI_RES";
+            axis_multiplier: 0.65;
+        },
+        down: {
+            mode: "Axis";
+            axis: "REL_WHEEL_HI_RES";
+            axis_multiplier: -0.65;
+        },
+    };
+    dpi: 1800;# <- you may change this number. 4000 is the maximum.
+
+    buttons: (
+        {
+            cid: 0xc3;
+            action =
+            {
+                type: "Gestures";
+                gestures: (
+                    {
+                        direction: "Up";
+                        mode: "OnRelease";
+                        action =
+                        {
+                            type: "Keypress";
+                            keys: ["KEY_LEFTCTRL", "KEY_LEFTALT",  "KEY_UP"];
+                        };
+                    },
+                    {
+                        direction: "Down";
+                        mode: "OnRelease";
+                        action =
+                        {
+                            type: "Keypress";
+                            keys: ["KEY_LEFTCTRL", "KEY_LEFTALT", "KEY_DOWN"];
+                        };
+                    },
+                    {
+                        direction: "Left";
+                        mode: "OnRelease";
+                        action =
+                        {
+                            type: "Keypress";
+                            keys: ["KEY_LEFTCTRL", "KEY_LEFTALT", "KEY_LEFT"];
+                        };
+                    },
+                    {
+                        direction: "Right";
+                        mode: "OnRelease";
+                        action =
+                        {
+                            type: "Keypress";
+                            keys: ["KEY_LEFTCTRL", "KEY_LEFTALT", "KEY_RIGHT"];
+                        }
+                    },
+
+                    {
+                        direction: "None"
+                        mode: "OnRelease";
+                        action =
+                        {
+                            type: "Keypress";
+                            keys: ["KEY_LEFTMETA"];
+                        }
+                    }
+                );
+            };
+        },
+        {
+            cid: 0xc4;
+            action =
+            {
+                type = "ToggleSmartshift";
+            };
+        },
+	{
+	    cid: 0x53;
+	    action =
+	    {
+		type = "Back Button";
+	    };
+	},	
+	{
+	    cid: 0x56;
+	    action =
+	    {
+		type = "Forward Button";
+	    };
+	}	
+    );
+}
+);
