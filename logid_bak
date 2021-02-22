@@ -1,8 +1,8 @@
+// https://wiki.archlinux.org/index.php/Logitech_MX_Master
 // https://github.com/PixlOne/logiops/wiki/CIDs
 // https://github.com/torvalds/linux/blob/master/include/uapi/linux/input-event-codes.h
 /// https://askubuntu.com/questions/1149310/logitech-mx-master-2s-via-bluetooth-change-pointer-speed/1246278#1246278
 // https://github.com/PixlOne/logiops
-
 
 devices: (
 {
@@ -97,16 +97,21 @@ devices: (
 	    cid: 0x53;
 	    action =
 	    {
-		type = "Back Button";
+		type = "Keypress";
+                keys: ["KEY_LEFTCTRL", "KEY_KPMINUS" ];
 	    };
 	},	
 	{
 	    cid: 0x56;
 	    action =
 	    {
-		type = "Forward Button";
+		type = "Keypress";
+                keys: ["KEY_LEFTCTRL", "KEY_KPPLUS" ];
 	    };
 	}	
     );
 }
 );
+
+
+
