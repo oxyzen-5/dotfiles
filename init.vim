@@ -1,13 +1,16 @@
 " plugins
+" auto-install vim-plug
 let need_to_install_plugins = 0
-if empty(glob('~/.vim/autoload/plug.vim'))
-    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    "autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+if empty(glob('~/.config/nvim/autoload/plug.vim'))
+	silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
+				\https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+	"autocmd VimEnter * PlugInstall
     let need_to_install_plugins = 1
+
 endif
 
-call plug#begin()
+call plug#begin('~/.config/nvim/plugged')
+
 Plug 'tpope/vim-sensible'
 Plug 'itchyny/lightline.vim'
 Plug 'joshdick/onedark.vim'
@@ -20,7 +23,6 @@ Plug 'majutsushi/tagbar'
 Plug 'vim-scripts/indentpython.vim'
 Plug 'lepture/vim-jinja'
 Plug 'pangloss/vim-javascript'
-Plug 'ycm-core/YouCompleteMe', { 'do': './install.py' }
 Plug 'kien/ctrlp.vim'                     " Fast transitions on project files
 Plug 'tpope/vim-surround'                 " Parentheses, brackets, quotes, XML tags, and more
 Plug 'easymotion/vim-easymotion'
@@ -146,7 +148,7 @@ filetype plugin indent on
 set noshowmode
 let g:lightline = {
         \ 'colorscheme': 'powerline',
-        \ 'active': {
+        \ 'acive': {
         \   'right': [ [  'TIME'],
         \            [ 'percent',  'lineinfo' ],
         \            [ 'fileformat', 'fileencoding', 'filetype'] ]
@@ -256,20 +258,6 @@ let g:snippets_dir='~/.vim/vim-snippets/snippets'
 "" Python settings
 "=====================================================
 
-" YouCompleteMe
-set completeopt-=preview
-
-let g:ycm_global_ycm_extra_conf='~/.vim/ycm_extra_conf.py'
-let g:ycm_confirm_extra_conf=0
-
-let g:ycm_collect_identifiers_from_tags_files = 1 " Let YCM read tags from Ctags file
-let g:ycm_use_ultisnips_completer = 1 " Default 1, just ensure
-let g:ycm_seed_identifiers_with_syntax = 1 " Completion for programming language's keyword
-let g:ycm_complete_in_comments = 1 " Completion in comments
-let g:ycm_complete_in_strings = 1 " Completion in string
-
-nmap <leader>g :YcmCompleter GoTo<CR>
-nmap <leader>d :YcmCompleter GoToDefinition<CR>
 
 "---------------- ale -----
 let g:ale_sign_column_always = 1
@@ -424,4 +412,4 @@ set wildmode=longest:list,full
 nmap <F4> :call SVED_Sync()<CR>
 "
 "autocmd BufWritePost *.tex silent! execute "!xelatex --synctex=1 % >/dev/null 2>&1" | redraw!
-autocmd BufWritePost *.tex execute "!xelatex --synctex=1 %"
+autocmd BufWritePost *.tex execute "!xelatex --synctex=1 %"t
