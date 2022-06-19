@@ -47,17 +47,17 @@ Plug 'mhinz/vim-startify'
 "-----------------=== code virtual text  ==-------------------
 Plug 'metakirby5/codi.vim'
 
+"-----------------=== coc ==-------------------
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
 "-----------------=== fzf ==-------------------
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
+"Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+"Plug 'junegunn/fzf.vim'
 
 "----------------- A Vim Plugin for Lively Previewing LaTeX PDF Output
 "Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
 "---------- syctex to go to location in latex
 Plug 'peterbjorgensen/sved'
-
-
-
 
 call plug#end()
 
@@ -98,6 +98,28 @@ set shiftwidth=4
 set softtabstop=4
 set colorcolumn=80
 set expandtab
+set path+=**
+
+
+" COC Requirements
+" TextEdit might fail if hidden is not set.
+set hidden
+
+" Some servers have issues with backup files, see #649.
+set nobackup
+set nowritebackup
+
+" Give more space for displaying messages.
+set cmdheight=1
+
+" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+" delays and poor user experience.
+set updatetime=300
+
+" Don't pass messages to |ins-completion-menu|.
+set shortmess+=c
+
+
 " starify for neovim
 if !has('nvim')
     set viminfo+=~/.vim/viminfo
