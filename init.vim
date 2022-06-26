@@ -53,6 +53,9 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "-----------------=== fzf ==-------------------
 "Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 "Plug 'junegunn/fzf.vim'
+"-----------------=== Telescope ==-------------------
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
 
 "----------------- A Vim Plugin for Lively Previewing LaTeX PDF Output
 "Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
@@ -99,7 +102,6 @@ set softtabstop=4
 set colorcolumn=80
 set expandtab
 set path+=**
-
 
 " COC Requirements
 " TextEdit might fail if hidden is not set.
@@ -427,6 +429,14 @@ let g:fzf_commands_expect = 'alt-enter,ctrl-x'
 set wildmenu
 set wildmode=longest:list,full
 """"""""""""""""""
+"-----------------=== Telescope ==-------------------
+" Find files using Telescope command-line sugar.
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+
+
 "-------------synctex for going form pdf to latex-----"
 "first run xelatex --synctex=1 example.tex
 ""F4 to open location in pdf"

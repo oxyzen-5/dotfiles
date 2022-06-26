@@ -135,11 +135,11 @@ _zsh_autosuggest_strategy_histdb_bharath() {
         order by places.dir != '$(sql_escape $PWD)', count(*) desc
         limit 1,1
     "
-    
+
     suggestion1=$(_histdb_query "$query1")
     suggestion2=$(_histdb_query "$query2")
     suggestion3=$(_histdb_query "$query2")
-    
+
 	if [ $suggestion1 = $suggestion2 ]; then
 	    suggestion=$suggestion3
 	else
@@ -148,7 +148,7 @@ _zsh_autosuggest_strategy_histdb_bharath() {
 
 #echo $suggestion
 }
- 
+
 #ZSH_AUTOSUGGEST_STRATEGY=histdb_bharath
 
 # Query to pull in the most recent command if anything was found similar
