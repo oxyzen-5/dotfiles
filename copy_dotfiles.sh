@@ -25,7 +25,7 @@ var=$(date)
 var=`date`
 echo "$var"
 
-git commit -m '$var'
+git commit -m "$var"
 
 git push origin master
 
