@@ -208,6 +208,7 @@ _zsh_autosuggest_strategy_histdb_top_fallback() {
 alias doom="~/.emacs.d/bin/doom"
 alias doc="/mnt/doc"
 alias logseq="~/Logseq-linux-x64-0.5.9.AppImage &"
+alias cpdot="~/dotfiles/copy_dotfiles.sh"
 ###### pyenv
 export PATH="/home/oxyzen/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"
