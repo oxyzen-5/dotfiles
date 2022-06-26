@@ -208,6 +208,7 @@ _zsh_autosuggest_strategy_histdb_top_fallback() {
 alias doom="~/.emacs.d/bin/doom"
 alias doc="/mnt/doc"
 alias logseq="~/Logseq-linux-x64-0.5.9.AppImage &"
+# copy to git hub folder and push
 alias cpdot="~/dotfiles/copy_dotfiles.sh"
 
 
