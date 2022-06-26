@@ -12,7 +12,10 @@ endif
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'tpope/vim-sensible'
-Plug 'itchyny/lightline.vim'
+Plug 'nvim-lualine/lualine.nvim'
+"Plug 'itchyny/lightline.vim'
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'romgrk/barbar.nvim'
 Plug 'joshdick/onedark.vim'
 Plug 'ap/vim-buftabline'
 Plug 'airblade/vim-gitgutter'
@@ -56,6 +59,8 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "-----------------=== Telescope ==-------------------
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
+"-----------------=== treesetter ==-------------------
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 "----------------- A Vim Plugin for Lively Previewing LaTeX PDF Output
 "Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
@@ -168,19 +173,51 @@ filetype on
 filetype plugin on
 filetype plugin indent on
 
-" lightline
-set noshowmode
-let g:lightline = {
-        \ 'colorscheme': 'powerline',
-        \ 'acive': {
-        \   'right': [ [  'TIME'],
-        \            [ 'percent',  'lineinfo' ],
-        \            [ 'fileformat', 'fileencoding', 'filetype'] ]
-        \ },
-        \ 'component': {
-        \   'TIME':'%{strftime("%H:%M")}'
-        \ },
-        \ }
+
+"" lightline
+"set noshowmode
+"let g:lightline = {
+"        \ 'colorscheme': 'powerline',
+"        \ 'acive': {
+"        \   'right': [ [  'TIME'],
+"        \            [ 'percent',  'lineinfo' ],
+"        \            [ 'fileformat', 'fileencoding', 'filetype'] ]
+"        \ },
+"        \ 'component': {
+"        \   'TIME':'%{strftime("%H:%M")}'
+"        \ },
+"        \ }
+lua << END
+require('lualine').setup {
+  options = {
+    icons_enabled = true,
+    theme = 'auto',
+    component_separators = { left = '', right = ''},
+    section_separators = { left = '', right = ''},
+    disabled_filetypes = {},
+    always_divide_middle = true,
+    globalstatus = false,
+  },
+  sections = {
+    lualine_a = {'mode'},
+    lualine_b = {'branch', 'diff', 'diagnostics'},
+    lualine_c = {'filename'},
+    lualine_x = {'encoding', 'fileformat', 'filetype'},
+    lualine_y = {'progress'},
+    lualine_z = {'location'}
+  },
+  inactive_sections = {
+    lualine_a = {},
+    lualine_b = {},
+    lualine_c = {'filename'},
+    lualine_x = {'location'},
+    lualine_y = {},
+    lualine_z = {}
+  },
+  tabline = {},
+  extensions = {}
+}
+END
 
 " code folding
 set foldmethod=indent
