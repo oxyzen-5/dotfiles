@@ -12,9 +12,6 @@ working_location=$(pwd)
 
 pushd /home/oxyzen/dotfiles
 ls
-#cd /home/oxyzen/dotfiles
-#exec zsh
-#$SHELL
 echo $(pwd)
 
 git add .
@@ -28,5 +25,3 @@ echo "$var"
 git commit -m "$var"
 
 git push origin master
-
-#cd $working_location
