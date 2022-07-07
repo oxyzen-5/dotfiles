@@ -214,7 +214,7 @@ alias cpdot="~/dotfiles/copy_dotfiles.sh"
 
 
 ###### pyenv
-export PATH="/home/oxyzen/.pyenv/bin:$PATH"
+export PATH="$HOME/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 ##############################
